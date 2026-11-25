@@ -146,7 +146,9 @@ export const skillGroups = [
     label: "Technical",
     items: [
       "Python & Node.js",
+      "React & Angular",
       "PostgreSQL & APIs",
+      "RabbitMQ",
       "AWS / GCP",
       "Claude Code & Cursor",
     ],
