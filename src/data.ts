@@ -1,9 +1,8 @@
 export const profile = {
   name: 'Nathan Lam',
-  title: 'Senior AI & systems analyst',
+  title: 'Senior AI Engineer',
   location: 'Hong Kong',
   email: 'nl.nathanlam@gmail.com',
-  phone: '6856 8696',
   linkedin: 'https://linkedin.com/in/nl-nathan-lam',
   languages: ['English', 'Cantonese', 'Mandarin'],
   summary:

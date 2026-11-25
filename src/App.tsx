@@ -221,9 +221,6 @@ export default function App() {
             >
               linkedin.com/in/nl-nathan-lam
             </a>
-            <a className="contact__link" href={`tel:+852${profile.phone.replace(/\s/g, '')}`}>
-              +852 {profile.phone}
-            </a>
           </div>
           <div className="footer">
             <span>Based in {profile.location}</span>
