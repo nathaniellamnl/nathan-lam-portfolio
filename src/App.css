@@ -270,6 +270,56 @@
   }
 }
 
+.job__body {
+  display: grid;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
+@media (min-width: 960px) {
+  .job--media .job__body {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 42%);
+    align-items: start;
+    gap: 1.5rem;
+  }
+}
+
+.job__media {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.job__figure {
+  margin: 0;
+}
+
+.job__figure img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.job__figure figcaption {
+  margin-top: 0.55rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}
+
+.job__figure figcaption a {
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--accent);
+}
+
+.job__figure figcaption a:hover,
+.job__figure figcaption a:focus-visible {
+  color: var(--accent);
+}
+
 .job__period {
   margin: 0;
   font-size: 0.85rem;

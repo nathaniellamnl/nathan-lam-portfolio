@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
-import { education, experience, profile, skillGroups } from './data'
+import { education, experience, profile, skillGroups, type JobImage } from './data'
 
 function useReveal() {
   const ref = useRef<HTMLElement | null>(null)
@@ -150,26 +150,64 @@ export default function App() {
           <p className="section__label">Experience</p>
           <h2 className="section__title">Selected work</h2>
           <div className="timeline">
-            {experience.map((job) => (
-              <article key={`${job.company}-${job.period}`} className="job">
-                <p className="job__period">{job.period}</p>
-                <div>
-                  <h3 className="job__company">{job.company}</h3>
-                  <p className="job__role">{job.role}</p>
-                  <ul className="job__tags">
-                    {job.tags.map((tag) => (
-                      <li key={tag}>{tag}</li>
-                    ))}
-                  </ul>
-                  {'note' in job && job.note ? <p className="job__note">{job.note}</p> : null}
-                  <ul className="job__points">
-                    {job.points.map((point) => (
-                      <li key={point}>{point}</li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
-            ))}
+            {experience.map((job) => {
+              const media: JobImage[] =
+                'images' in job && job.images
+                  ? job.images
+                  : 'image' in job && job.image
+                    ? [job.image]
+                    : []
+
+              return (
+                <article
+                  key={`${job.company}-${job.period}`}
+                  className={`job${media.length ? ' job--media' : ''}`}
+                >
+                  <p className="job__period">{job.period}</p>
+                  <div className="job__body">
+                    <div className="job__copy">
+                      <h3 className="job__company">{job.company}</h3>
+                      <p className="job__role">{job.role}</p>
+                      <ul className="job__tags">
+                        {job.tags.map((tag) => (
+                          <li key={tag}>{tag}</li>
+                        ))}
+                      </ul>
+                      {'note' in job && job.note ? <p className="job__note">{job.note}</p> : null}
+                      <ul className="job__points">
+                        {job.points.map((point) => (
+                          <li key={point}>{point}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    {media.length ? (
+                      <div className="job__media">
+                        {media.map((item) => (
+                          <figure className="job__figure" key={item.src}>
+                            <img src={item.src} alt={item.alt} loading="lazy" />
+                            <figcaption>
+                              {item.caption}
+                              {item.creditHref && item.creditLabel ? (
+                                <>
+                                  {' '}
+                                  <a
+                                    href={item.creditHref}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    {item.creditLabel}
+                                  </a>
+                                </>
+                              ) : null}
+                            </figcaption>
+                          </figure>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                </article>
+              )
+            })}
           </div>
         </RevealSection>
 
